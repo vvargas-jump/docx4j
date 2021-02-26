@@ -19,6 +19,7 @@
  */
 package org.docx4j.model.properties.paragraph;
 
+import org.docx4j.dml.CTTextParagraph;
 import org.docx4j.jaxb.Context;
 import org.docx4j.wml.CTBorder;
 import org.docx4j.wml.PPr;
@@ -78,5 +79,10 @@ public class PBorderBottom extends AbstractPBorder {
 		}
 		pBdr.setBottom((CTBorder)this.getObject() );
 	}
-	
+
+  @Override
+  public void set(final CTTextParagraph paragraph) {
+    //TODO
+  }
+
 }

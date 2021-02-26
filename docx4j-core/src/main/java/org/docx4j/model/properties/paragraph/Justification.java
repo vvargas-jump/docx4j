@@ -19,6 +19,9 @@
  */
 package org.docx4j.model.properties.paragraph;
 
+import org.docx4j.dml.CTTextParagraph;
+import org.docx4j.dml.CTTextParagraphProperties;
+import org.docx4j.dml.STTextAlignType;
 import org.docx4j.jaxb.Context;
 import org.docx4j.wml.Jc;
 import org.docx4j.wml.JcEnumeration;
@@ -105,5 +108,35 @@ public class Justification extends AbstractParagraphProperty {
 	public void set(PPr pPr) {
 		pPr.setJc( (Jc)this.getObject() );
 	}
-	
+
+  @Override
+  public void set(final CTTextParagraph paragraph) {
+    final CTTextParagraphProperties pPr = paragraph.getPPr();
+    Jc jc = (Jc)this.getObject();
+    switch(jc.getVal()){
+      case LEFT:
+        pPr.setAlgn(STTextAlignType.L);
+        return;
+      case CENTER:
+        pPr.setAlgn(STTextAlignType.CTR);
+        return;
+      case RIGHT:
+        pPr.setAlgn(STTextAlignType.R);
+        return;
+      case DISTRIBUTE:
+        pPr.setAlgn(STTextAlignType.DIST);
+        return;
+      case THAI_DISTRIBUTE:
+        pPr.setAlgn(STTextAlignType.THAI_DIST);
+        return;
+      case BOTH:
+      case MEDIUM_KASHIDA:
+      case NUM_TAB:
+      case HIGH_KASHIDA:
+      case LOW_KASHIDA:
+      default:
+        return;
+    }
+  }
+
 }

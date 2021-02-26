@@ -19,11 +19,14 @@
  */
 package org.docx4j.model.properties.paragraph;
 
+import org.docx4j.dml.CTTextParagraph;
 import org.docx4j.model.properties.Property;
 import org.docx4j.wml.PPr;
 
 public abstract class AbstractParagraphProperty extends Property {
 	
 	public abstract void set(PPr pPr);
+
+	public abstract void set(CTTextParagraph paragraph);
 
 }

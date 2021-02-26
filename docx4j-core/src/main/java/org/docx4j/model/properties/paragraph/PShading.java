@@ -22,6 +22,11 @@ package org.docx4j.model.properties.paragraph;
 import java.lang.reflect.Method;
 
 import org.docx4j.UnitsOfMeasurement;
+import org.docx4j.dml.CTColor;
+import org.docx4j.dml.CTRegularTextRun;
+import org.docx4j.dml.CTSRgbColor;
+import org.docx4j.dml.CTTextCharacterProperties;
+import org.docx4j.dml.CTTextParagraph;
 import org.docx4j.jaxb.Context;
 import org.docx4j.wml.CTShd;
 import org.docx4j.wml.PPr;
@@ -139,5 +144,24 @@ public class PShading extends AbstractParagraphProperty {
 	public void set(PPr pPr) {
 		pPr.setShd((CTShd)this.getObject() );		
 	}
-	
+
+  @Override
+  public void set(final CTTextParagraph paragraph) {
+    //The highlight is put on the level of each text run.
+    //Only to be done if there is not a shading yet
+    for (Object textRun : paragraph.getEGTextRun()) {
+      if (textRun instanceof CTRegularTextRun) {
+        final CTTextCharacterProperties rPr = ((CTRegularTextRun) textRun).getRPr();
+        if (rPr != null && rPr.getHighlight() == null) {
+          CTSRgbColor locCTSRgbColor = new CTSRgbColor();
+          locCTSRgbColor.setVal(((CTShd)this.getObject()).getFill());
+          CTColor fillColor = new CTColor();
+          fillColor.setSrgbClr(locCTSRgbColor);
+          rPr.setHighlight(fillColor);
+        }
+      }
+    }
+
+  }
+
 }

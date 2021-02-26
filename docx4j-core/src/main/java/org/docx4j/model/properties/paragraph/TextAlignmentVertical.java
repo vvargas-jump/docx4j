@@ -19,6 +19,7 @@
  */
 package org.docx4j.model.properties.paragraph;
 
+import org.docx4j.dml.CTTextParagraph;
 import org.docx4j.jaxb.Context;
 import org.docx4j.wml.PPr;
 import org.docx4j.wml.PPrBase.TextAlignment;
@@ -97,5 +98,10 @@ public class TextAlignmentVertical extends AbstractParagraphProperty {
 	public void set(PPr pPr) {
 		pPr.setTextAlignment( (TextAlignment)this.getObject() );
 	}
-	
+
+  @Override
+  public void set(final CTTextParagraph paragraph) {
+    //TODO
+  }
+
 }

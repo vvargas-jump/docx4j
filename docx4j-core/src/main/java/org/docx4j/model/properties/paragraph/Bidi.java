@@ -19,6 +19,7 @@
  */
 package org.docx4j.model.properties.paragraph;
 
+import org.docx4j.dml.CTTextParagraph;
 import org.docx4j.wml.BooleanDefaultTrue;
 import org.docx4j.wml.PPr;
 import org.slf4j.Logger;
@@ -116,6 +117,10 @@ public class Bidi extends AbstractParagraphProperty {
 		pPr.setBidi( (BooleanDefaultTrue)this.getObject() );
 	}
 
+  @Override
+  public void set(final CTTextParagraph paragraph) {
+    //TODO
+  }
 
-	
+
 }

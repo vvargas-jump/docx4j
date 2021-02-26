@@ -19,6 +19,8 @@
  */
 package org.docx4j.model.properties.paragraph;
 
+import org.docx4j.dml.CTTextParagraph;
+import org.docx4j.dml.CTTextParagraphProperties;
 import org.docx4j.wml.PPr;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -77,6 +79,10 @@ public class Tabs extends AbstractParagraphProperty {
 		pPr.setTabs( (org.docx4j.wml.Tabs)this.getObject() );
 	}
 
+  @Override
+  public void set(final CTTextParagraph paragraph) {
+    //FIXMe VVa it is only for PDF
+  }
 
-	
+
 }

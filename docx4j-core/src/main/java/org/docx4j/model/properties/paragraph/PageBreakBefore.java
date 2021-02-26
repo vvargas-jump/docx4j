@@ -19,6 +19,7 @@
  */
 package org.docx4j.model.properties.paragraph;
 
+import org.docx4j.dml.CTTextParagraph;
 import org.docx4j.jaxb.Context;
 import org.docx4j.wml.BooleanDefaultTrue;
 import org.docx4j.wml.PPr;
@@ -83,5 +84,10 @@ public class PageBreakBefore extends AbstractParagraphProperty {
 	public void set(PPr pPr) {
 		pPr.setPageBreakBefore( (BooleanDefaultTrue)this.getObject() );
 	}
-	
+
+  @Override
+  public void set(final CTTextParagraph paragraph) {
+    //TODO
+  }
+
 }

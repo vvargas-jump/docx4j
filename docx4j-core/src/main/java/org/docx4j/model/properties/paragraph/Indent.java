@@ -21,6 +21,8 @@ package org.docx4j.model.properties.paragraph;
 
 import org.docx4j.UnitsOfMeasurement;
 import org.docx4j.XmlUtils;
+import org.docx4j.dml.CTTextParagraph;
+import org.docx4j.dml.CTTextParagraphProperties;
 import org.docx4j.jaxb.Context;
 import org.docx4j.model.styles.StyleUtil;
 import org.docx4j.wml.PPr;
@@ -321,5 +323,12 @@ public class Indent extends AbstractParagraphProperty {
 	public void set(PPr pPr) {
 		pPr.setInd( (Ind)this.getObject() );
 	}
-	
+
+  @Override
+  public void set(final CTTextParagraph paragraph) {
+    CTTextParagraphProperties pPr = paragraph.getPPr();
+    Ind newInd = (Ind)this.getObject();
+    pPr.setIndent(newInd.getLeft().intValue());
+  }
+
 }

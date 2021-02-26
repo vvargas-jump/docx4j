@@ -22,6 +22,7 @@ package org.docx4j.model.properties.paragraph;
 import java.math.BigInteger;
 
 import org.docx4j.UnitsOfMeasurement;
+import org.docx4j.dml.CTTextParagraph;
 import org.docx4j.jaxb.Context;
 import org.docx4j.wml.PPr;
 import org.docx4j.wml.PPrBase.Spacing;
@@ -131,5 +132,10 @@ public class LineSpacing extends AbstractParagraphProperty {
 		}
 		pPr.getSpacing().setLine((BigInteger)this.getObject() );
 	}
-	
+
+  @Override
+  public void set(final CTTextParagraph paragraph) {
+    //TODO
+  }
+
 }

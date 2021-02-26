@@ -19,6 +19,7 @@
  */
 package org.docx4j.model.properties.paragraph;
 
+import org.docx4j.dml.CTTextParagraph;
 import org.docx4j.jaxb.Context;
 import org.docx4j.wml.BooleanDefaultTrue;
 import org.docx4j.wml.PPr;
@@ -84,5 +85,10 @@ public class KeepNext extends AbstractParagraphProperty {
 	public void set(PPr pPr) {
 		pPr.setKeepNext( (BooleanDefaultTrue)this.getObject() );
 	}
-	
+
+  @Override
+  public void set(final CTTextParagraph parParagraph) {
+    //TODO
+  }
+
 }

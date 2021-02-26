@@ -19,6 +19,7 @@
  */
 package org.docx4j.model.properties.paragraph;
 
+import org.docx4j.dml.CTTextParagraph;
 import org.docx4j.wml.PPr;
 import org.docx4j.wml.PPrBase.NumPr;
 import org.slf4j.Logger;
@@ -68,5 +69,10 @@ public class NumberingProperty extends AbstractParagraphProperty {
 	public void set(PPr pPr) {
 		pPr.setNumPr( (NumPr)this.getObject() );
 	}
-	
+
+  @Override
+  public void set(final CTTextParagraph paragraph) {
+    //TODO
+  }
+
 }
