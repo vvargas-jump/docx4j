@@ -22,6 +22,8 @@ package org.docx4j.model.properties.run;
 import java.lang.reflect.Method;
 
 import org.docx4j.UnitsOfMeasurement;
+import org.docx4j.dml.CTSRgbColor;
+import org.docx4j.dml.CTSolidColorFillProperties;
 import org.docx4j.dml.CTTextCharacterProperties;
 import org.docx4j.jaxb.Context;
 import org.docx4j.wml.Color;
@@ -118,9 +120,13 @@ public class FontColor extends AbstractRunProperty {
 		rPr.setColor((Color)this.getObject());
 	}
 
-    @Override
-    public void set(CTTextCharacterProperties rPr) {
-        //TODO
-    }
+	@Override
+  public void set(CTTextCharacterProperties rPr) {
+	  CTSRgbColor locNewColor = new CTSRgbColor();
+	  locNewColor.setVal(((Color) this.getObject()).getVal());
+    CTSolidColorFillProperties locSolidFill = new CTSolidColorFillProperties();
+    locSolidFill.setSrgbClr(locNewColor);
+	  rPr.setSolidFill(locSolidFill);
+	}
 	
 }

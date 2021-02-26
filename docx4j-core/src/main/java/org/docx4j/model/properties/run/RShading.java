@@ -22,6 +22,8 @@ package org.docx4j.model.properties.run;
 import java.lang.reflect.Method;
 
 import org.docx4j.UnitsOfMeasurement;
+import org.docx4j.dml.CTColor;
+import org.docx4j.dml.CTSRgbColor;
 import org.docx4j.dml.CTTextCharacterProperties;
 import org.docx4j.jaxb.Context;
 import org.docx4j.wml.CTShd;
@@ -136,9 +138,13 @@ public class RShading extends AbstractRunProperty {
 		rPr.setShd((CTShd)this.getObject() );		
 	}
 
-    @Override
-    public void set(CTTextCharacterProperties rPr) {
-        // TODO
-    }
+	@Override
+  public void set(CTTextCharacterProperties rPr) {
+    CTSRgbColor locCTSRgbColor = new CTSRgbColor();
+    locCTSRgbColor.setVal(((CTShd)this.getObject()).getFill());
+    CTColor fillColor = new CTColor();
+    fillColor.setSrgbClr(locCTSRgbColor);
+	  rPr.setHighlight(fillColor);
+	}
 	
 }
